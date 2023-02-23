@@ -6,7 +6,7 @@ authors = ["Nathan Hui <nthui@eng.ucsd.edu>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = "^3.8"
 synology-api = "^0.5.1"
 
 [tool.poetry.group.dev.dependencies]
