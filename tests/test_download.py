@@ -8,7 +8,7 @@ from typing import Dict
 
 import pytest
 
-from NasDownload import nas
+from nas_unzip import nas
 
 
 @pytest.fixture(name='creds')
