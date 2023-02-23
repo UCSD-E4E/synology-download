@@ -32,16 +32,18 @@ def nas_unzip(
         password=password,
         secure=True,
         cert_verify=False,
-        otp_code=None
+        otp_code=None,
+        dsm_version=7
     )
 
     with TemporaryDirectory() as tmpdir:
-        tmp_file = Path(tmpdir, 'tmp.zip')
+        tmp_file = Path(tmpdir, 'tmp')
         file_station.get_file(
             path=url_parts.path,
             mode='download',
             dest_path=tmp_file.as_posix()
         )
-        with open(tmp_file, 'rb') as handle:
+        file_name = Path(url_parts.path).name
+        with open(tmp_file.joinpath(file_name), 'rb') as handle:
             with zipfile.ZipFile(handle, 'r') as zip_handle:
                 zip_handle.extractall(path=output_path.as_posix())
