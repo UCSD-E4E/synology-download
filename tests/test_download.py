@@ -34,7 +34,7 @@ def test_download(creds):
     """
     with TemporaryDirectory() as tmpdir:
         nas.nas_unzip(
-            network_path='smb://e4e-nas.ucsd.edu/temp/github_actions/synology-download/test.zip',
+            network_path='smb://e4e-nas.ucsd.edu:6021/temp/github_actions/synology-download/test.zip',
             output_path=Path(tmpdir),
             username=creds['username'],
             password=creds['password']
