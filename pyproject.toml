@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "nas_unzip"
-version = "0.1.0"
+version = "0.0.1"
 description = ""
 authors = ["Nathan Hui <nthui@eng.ucsd.edu>"]
 readme = "README.md"
