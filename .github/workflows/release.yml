@@ -37,7 +37,7 @@ jobs:
     strategy:
       matrix:
         # os: [ubuntu-latest, windows-latest] # Not supporting macos due to https://github.com/stbrumme/hash-library/pull/4/files not being resolved
-        python-version: ["3.8", "3.9", "3.10", "3.11", "3.12", "3.13"]
+        python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
 
     steps:
         - uses: actions/checkout@v4
