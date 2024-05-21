@@ -1,15 +1,19 @@
 name: pytest
 
-on: [push, workflow_dispatch]
+on:
+    workflow_run:
+        workflows: ["Dependabot PR Check"]
+        types:
+            - completed
 
 jobs:
-  build:
+  dependabot-check:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     strategy:
       matrix:
         os: [ubuntu-20.04, ubuntu-22.04, windows-latest, macos-12, macos-11]
         python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
     runs-on: ${{ matrix.os }}
-    if: ${{ github.actor != 'dependabot[bot]' }}
     steps:
     - uses: actions/checkout@v3
     - name: Set up Python 3.9
