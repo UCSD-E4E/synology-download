@@ -13,7 +13,7 @@ jobs:
       contents: write
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4.1.7
       with:
         fetch-depth: 0
         submodules: recursive
@@ -21,7 +21,7 @@ jobs:
 
 
     - name: Python Semantic Release
-      uses: python-semantic-release/python-semantic-release@master
+      uses: python-semantic-release/python-semantic-release@v9.8.5
       id: release
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -40,13 +40,13 @@ jobs:
         python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
 
     steps:
-        - uses: actions/checkout@v4
+        - uses: actions/checkout@v4.1.7
           with:
             submodules: recursive
             ref: main
       
         # Used to host cibuildwheel
-        - uses: actions/setup-python@v3
+        - uses: actions/setup-python@v5.1.1
           with:
             python-version: ${{ matrix.python-version }}
 
@@ -67,7 +67,7 @@ jobs:
         - name: Build wheels
           run: python -m pip wheel -w dist .
     
-        - uses: actions/upload-artifact@v3
+        - uses: actions/upload-artifact@v4.3.4
           with:
             path: ./dist/nas_unzip*.whl
 
@@ -78,13 +78,13 @@ jobs:
       id-token: write
       contents: write
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4.1.7
       with:
         fetch-depth: 0
         submodules: recursive
         ref: main
 
-    - uses: actions/download-artifact@v3
+    - uses: actions/download-artifact@v4.1.8
       with:
         name: artifact
         path: dist
@@ -94,6 +94,6 @@ jobs:
 
     - name: Publish package distributions to GitHub Releases
       id: github-release
-      uses: python-semantic-release/upload-to-gh-release@main
+      uses: python-semantic-release/upload-to-gh-release@v9.8.5
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
